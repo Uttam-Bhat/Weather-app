@@ -1,0 +1,374 @@
+html{
+    min-height:100%;
+    font-size:16px;
+}
+body{
+    background:linear-gradient(#13b6df,#99bbe2) ;
+    margin:0;
+    padding:0.313rem;
+    padding-top:0;
+    min-height:100vh;
+    display:flex;
+    overflow:hidden; 
+}
+html{
+    height:100%;
+}
+aside{
+    width:5%;
+}
+nav{
+    display:flex;
+    flex-direction: column;
+    height:95vh;
+    background-color:rgba(255,255,255,0.6);
+    border-radius: 5px;
+    align-items: center;
+    padding: 0.25rem;;
+    margin-top:0.125rem;
+    position: relative;
+    top:1rem;
+}
+#navimgs{
+       position:absolute;
+        top:0.625rem;
+        border-radius: 1.25rem;
+}
+.icons p{
+    margin:-0.312rem;
+    text-align:center; 
+    font-size: 0.813rem;
+    font-weight: bold;
+
+}
+.icons{
+    margin:1.563rem 0.625rem ;
+
+}
+#icon-wrapper{
+    margin-top:3.125rem;
+}
+*{
+    font-family:sans-serif;
+}
+input{
+    position: relative;
+    top:0;
+    width:97%;
+    padding:0.625rem;
+    border:none;
+    border-radius:0.5rem;
+    outline:none;
+    background:rgba(255,255,255,0.9);
+}
+.main-cont{
+    padding:1.25rem;
+    width:70%;
+    position: relative;
+}
+#searchsvg{
+    position:absolute;
+    top:1.563rem;
+    right:2.188rem;
+}
+#Searchbutton{
+    position:absolute;
+    top:1.563rem;
+    right:2.188rem;
+    height:1.563rem;
+    width:1.875rem;
+    background:transparent;
+    border:none;
+    outline:none;
+    z-index:2
+}
+.mainweathercontent{
+    width:40%;
+    color:black;
+
+}
+.mainimage{
+     position: absolute; 
+    width:20%;
+    top:2.5rem;
+    right:-0.625rem;
+}
+.mainimage img{
+     position:absolute; 
+    width:8.75rem;
+    height:8.75rem;
+}
+#Currentcity{
+    margin-bottom:0.188rem;
+    padding:0;
+}
+#Currentcity ~ p{
+    margin-top:0;
+    font-size: 0.875rem;
+} 
+.mainweather{
+    padding:1.25rem;
+    position: relative; 
+    display:flex;
+    justify-content: space-between;
+    margin-top:-1.25rem;
+}
+.Currentforecast{
+    padding:1.25rem;
+    background:rgba(255,255,255,0.6); 
+    border-radius: 0.938rem;
+    margin:0;
+}
+.Allforecast{
+    display:flex;
+    justify-content: space-around;
+}
+h5,h2{
+    margin:5px
+}
+.Eachforecast{
+    width:16.6%;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    border:none;
+    outline:none;
+    border-right:2px solid rgba(128,128,128,0.3);
+    
+}
+.Allforecast h4{
+    margin-top:0;
+}
+.air-condition{
+    background-color:rgba(255,255,255,0.6);
+    border-radius:0.938rem;
+    padding:0.938rem;
+    margin:0;
+    margin-bottom:1.25rem;
+    height:27.5vh;
+}
+.Real-feel{
+    display:flex ;
+    align-items: center;
+}
+.Allconditions{
+    display:flex;
+    justify-content: space-between;
+    padding:0 0.625rem;
+    /* border:2px solid red */
+}
+.air-condition h4{
+    margin:0.313rem;
+    margin-bottom:-0.187rem;
+}
+.Twoinfo{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom:0.625rem;
+    /* padding-top:10px;; */
+}
+.air-condition h3{
+    margin:0.25rem;
+    color:rgba(0,0,0,0.65);
+}
+.Oneinfo{
+    margin-right:18.75rem;
+}
+#One{
+    margin-right: 17.625rem;
+}
+.Threedaysaside{
+    width:95%;
+    height:55.5vh;;
+    background:rgba(255,255,255,0.6);
+    border-radius:0.938rem;
+    padding:1.25rem;
+}
+.Each{
+    display: flex;
+    justify-content: space-around;
+    height:11.5%;
+    border:none;
+    border-bottom: 1px solid rgba(128,128,128,0.3);;
+    padding:1.25rem 0;
+    margin-bottom:0.5rem;
+     align-items: center; 
+}
+.Threedaysaside .each h4{
+    margin-top:1.25rem;
+}
+.Threedaysaside .each h5{
+    margin-top:0.563rem;
+}
+#Forecastheading{
+    margin-top:0.625rem;
+    font-size:1.25rem;
+}
+#last{
+    border:none !important;
+}
+.Threedays{
+    margin-top:1.5%;
+    display:flex;
+    width:20%;
+    flex-direction: column;
+}
+.astro{
+    background-color:rgba(255,255,255,0.6);
+    border-radius:15px;
+    padding:1.25rem;
+    margin-top:5.1%;
+    height:26.5vh;
+    width:95%;
+}
+#Daybreak-heading{
+    font-size:1.25rem;
+    margin-bottom:1.25rem;
+}
+/* Small devices (phones, 600px and down) */
+@media (max-width: 600px) {
+    html{
+        font-size: 10px;
+    }
+    body {
+        padding: 0.5rem;
+    }
+    aside {
+        width: 100%;
+    }
+    nav {
+        height: auto;
+        width: 100%;
+        position: static;
+        margin: 0;
+    }
+
+    .main-cont {
+        width: 100%;
+        padding: 0.5rem;
+    }
+    .mainweathercontent {
+        width: 100%;
+    }
+    .mainimage {
+        width: 100%;
+        top: auto;
+        right: auto;
+    }
+    .Eachforecast {
+        width: 100%;
+    }
+    .Threedaysaside {
+        height: auto;
+    }
+    .astro {
+        width: 100%;
+    }
+}
+
+/* Medium devices (tablets, 768px and down) */
+@media (max-width: 768px) {
+    html{
+        font-size:10px;
+    }
+    body {
+        padding: 1rem;
+    }
+    aside {
+        width: 20%;
+    }
+    nav {
+        height: auto;
+        width: 20%;
+        position: static;
+        margin-top: 0.5rem;
+    }
+    .main-cont {
+        width: 80%;
+    }
+    .mainweathercontent {
+        width: 60%;
+    }
+    .mainimage {
+        width: 40%;
+    }
+    .Eachforecast {
+        width: 33.3%;
+    }
+    .Threedaysaside {
+        height: auto;
+    }
+    .astro {
+        width: 100%;
+    }
+}
+
+/* Large devices (desktops, 992px and down) */
+@media (max-width: 992px) {
+    html{
+        font-size:12px;
+    }
+    body {
+        padding: 1rem;
+    }
+    aside {
+        width: 10%;
+
+    }
+    nav {
+        height: 100vh;
+        width: 100%;
+        position: static;
+        margin-top: 0.5rem;
+    }
+    #navimgs{
+        top:30px;
+    }
+    .main-cont {
+        width: 90%;
+    }
+    .mainweathercontent {
+        width: 70%;
+    }
+    .mainimage {
+        width: 30%;
+    }
+
+  
+    .Eachforecast {
+        width: 25%;
+    }
+    .Threedaysaside {
+        height: auto;
+    }
+    .astro {
+        width: 100%;
+    }
+}
+
+/* Extra large devices (larger desktops, 1200px and down) */
+@media (max-width: 1200px) {
+    html{
+        font-size:14px;
+    }
+    body {
+        padding: 1rem;
+    }
+    .main-cont {
+        width: 80%;
+    }
+    .mainweathercontent {
+        width: 50%;
+    }
+    .mainimage {
+        width: 25%;
+    }
+}
+
+
+
+
+
+
+

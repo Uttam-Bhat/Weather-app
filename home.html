@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast Clone</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+</head>
+<body>
+    <!-- <button onclick="weatherApi()">click</button> -->
+        <aside>
+            <nav>
+                    <img src="windimg.png" alt="" style="height:55px;width:55px;" id="navimgs"><br>
+                    <div id="icon-wrapper">
+                    <div class="icons">
+                        <svg width="50px" height="50px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M910.3 836.6H173.1c-27.4 0-49.8-22.3-49.8-49.8V289.9c0-27.4 22.3-49.8 49.8-49.8h737.3c27.4 0 49.8 22.3 49.8 49.8v496.8c-0.1 27.5-22.4 49.9-49.9 49.9z" fill="#A7B8C6"></path><path d="M272.5 201H118.8c-22.8 0-41.3 18.5-41.3 41.3V756c0 22.8 18.5 41.3 41.3 41.3H873c22.8 0 41.3-18.5 41.3-41.3V242.3c0-22.8-18.5-41.3-41.3-41.3H272.5z" fill="#7ACAE7"></path><path d="M722.1 206.5L568.6 359.9c-2.8 2.8-7.3 2.8-10 0-2.8-2.8-2.8-7.3 0-10L712 196.4c2.8-2.8 7.3-2.8 10 0 2.8 2.8 2.8 7.3 0.1 10.1zM917.4 576.6L754.3 739.7c-2.8 2.8-7.3 2.8-10 0-2.8-2.8-2.8-7.3 0-10l163.1-163.1c2.8-2.8 7.3-2.8 10 0 2.7 2.7 2.7 7.2 0 10zM283.4 383.2c2.8-2.8 7.3-2.8 10 0 2.8 2.8 2.8 7.3 0 10L139.9 546.7c-2.8 2.8-7.3 2.8-10 0-2.8-2.8-2.8-7.3 0-10M320.1 651.6l-149 149c-2.8 2.8-7.3 2.8-10 0-2.8-2.8-2.8-7.3 0-10l149-149c2.8-2.8 7.3-2.8 10 0 2.7 2.7 2.7 7.2 0 10z" fill="#FFFFFF"></path><path d="M873 811H118.8c-30.3 0-54.9-24.6-54.9-54.9V242.3c0-30.3 24.6-54.9 54.9-54.9H873c30.3 0 54.9 24.6 54.9 54.9V756c-0.1 30.3-24.7 55-54.9 55zM118.8 214.6c-15.3 0-27.7 12.4-27.7 27.7V756c0 15.3 12.4 27.7 27.7 27.7H873c15.3 0 27.7-12.4 27.7-27.7V242.3c0-15.3-12.4-27.7-27.7-27.7H118.8z" fill="#3E3A39"></path><path d="M499.8 660.2c4.8 4.3 7.2 10 7.2 16.8 0 6.6-2.5 12.7-7.6 18.3-2.8 3-8.2 7.2-16.1 12.5-7.9 5.2-12.7 9.8-14.4 13.7H507v11.2h-54c0-8 2.6-14.8 7.7-20.6 2.8-3.3 8.8-8 17.8-14.2 4.7-3.3 8.3-6.2 10.6-8.7 3.4-3.8 5.1-7.9 5.1-12.3 0-4.2-1.1-7.3-3.4-9.4-2.2-2-5.6-3-10.1-3-4.8 0-8.4 1.6-10.7 4.9-2.4 3-3.7 7.6-3.9 13.8h-12.7c0.1-8.7 2.7-15.7 7.6-21 5.1-5.6 11.9-8.5 20.2-8.5 7.5 0 13.7 2.1 18.6 6.5zM553.7 655.2v77.5H541v-62.2c-4.7 4.3-10.6 7.4-17.7 9.4v-12.6c3.4-0.9 7.1-2.4 11.2-4.6 3.8-2.3 7.1-4.9 9.7-7.6h9.5zM605.7 646.3c2.8 2.6 4.1 5.9 4.1 9.8 0 3.8-1.4 7-4.1 9.8-2.8 2.8-6 4.1-9.8 4.1-3.9 0-7.2-1.4-9.8-4.1-2.8-2.7-4.1-5.9-4.1-9.8 0-4 1.4-7.2 4.1-9.8 2.5-2.7 5.8-4.1 9.8-4.1 3.9 0 7.1 1.3 9.8 4.1z m-15 4.5c-1.4 1.4-2.2 3.1-2.2 5.2 0 2 0.7 3.8 2.2 5.2 1.4 1.4 3.2 2.2 5.2 2.2 1.9 0 3.6-0.7 5.2-2.2 1.4-1.6 2.2-3.3 2.2-5.2 0-2-0.7-3.8-2.2-5.2-1.4-1.4-3.2-2.2-5.2-2.2-2 0.1-3.8 0.8-5.2 2.2z" fill="#FFFFFF"></path><path d="M342.7 416.4m-113 0a113 113 0 1 0 226 0 113 113 0 1 0-226 0Z" fill="#EEE4AA"></path><path d="M342.7 416.4m-86.7 0a86.7 86.7 0 1 0 173.4 0 86.7 86.7 0 1 0-173.4 0Z" fill="#F2D31F"></path><path d="M622 425.1c-4.7 0-8.9-2.7-10.8-6.8-17.5-38.4-57.7-64.2-103.5-60.4-47.1 3.9-86.2 40.1-93.7 86.8-1 6.1-1 14.7-0.8 22.1 0.2 7.8-5 14.7-12.6 16.5-26.2 6.1-45.9 29.8-45.9 57.8 0 32.7 26.7 59.4 59.4 59.4H622c48.4 0 87.7-39.3 87.7-87.7 0-48.4-39.3-87.7-87.7-87.7z" fill="#C1E1EF"></path><path d="M604.5 444.6c-3.8 0-7.1-2.1-8.7-5.5-14.1-30.9-46.5-51.7-83.4-48.7-37.9 3.2-69.4 32.3-75.5 69.9-0.8 4.9-0.8 11.8-0.6 17.8 0.2 6.3-4 11.8-10.2 13.3-21.1 4.9-37 24-37 46.6 0 26.3 21.5 47.8 47.8 47.8h167.5c39 0 70.6-31.6 70.6-70.6s-31.5-70.6-70.5-70.6z" fill="#E5F2F8"></path><path d="M592.9 461.2c-2.8 0-5.4-1.6-6.6-4.2-10.7-23.4-35.2-39.1-63-36.8-28.7 2.4-52.5 24.5-57.1 52.9-0.6 3.7-0.6 9-0.5 13.5 0.1 4.7-3.1 8.9-7.7 10-16 3.7-28 18.2-28 35.2 0 19.9 16.3 36.2 36.2 36.2H592.8c29.5 0 53.4-23.9 53.4-53.4 0.1-29.4-23.8-53.4-53.3-53.4z" fill="#FFFFFF"></path></g></svg>
+                        <p>Weather</p>
+                    </div>
+                    <div class="icons"><center>
+                        <svg width="50px" height="50px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 18H10" stroke="#000000" stroke-width="2" stroke-linecap="round"></path> <path d="M4 12L16 12" stroke="#000000" stroke-width="2" stroke-linecap="round"></path> <path d="M4 6L20 6" stroke="#000000" stroke-width="2" stroke-linecap="round"></path> </g></svg>
+                        <p>Cities</p></center>
+                    </div>
+                    <div class="icons"><center>
+                        <svg width="40px" height="40px" viewBox="0 -0.28 46.384 46.384" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g id="Group_47" data-name="Group 47" transform="translate(-369.028 -1786.405)"> <path id="Path_126" data-name="Path 126" d="M384.789,1824.733l-13.761,5.5v-36.329l13.761-5.5Z" fill="#ffffff" stroke="#231f20" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path> <path id="Path_127" data-name="Path 127" d="M413.412,1824.733l-13.761,5.5v-36.329l13.761-5.5Z" fill="#ffffff" stroke="#231f20" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path> <path id="Path_128" data-name="Path 128" d="M385.34,1824.733l13.761,5.5v-36.329l-13.761-5.5Z" fill="#d1d3d4" stroke="#231f20" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path> </g> </g></svg>
+                        <p>Map</p></center>
+                    </div>
+                    <div class="icons">
+                        <svg width="50px" height="50px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd" d="M12.4277 2C11.3139 2 10.2995 2.6007 8.27081 3.80211L7.58466 4.20846C5.55594 5.40987 4.54158 6.01057 3.98466 7C3.42773 7.98943 3.42773 9.19084 3.42773 11.5937V12.4063C3.42773 14.8092 3.42773 16.0106 3.98466 17C4.54158 17.9894 5.55594 18.5901 7.58466 19.7915L8.27081 20.1979C10.2995 21.3993 11.3139 22 12.4277 22C13.5416 22 14.5559 21.3993 16.5847 20.1979L17.2708 19.7915C19.2995 18.5901 20.3139 17.9894 20.8708 17C21.4277 16.0106 21.4277 14.8092 21.4277 12.4063V11.5937C21.4277 9.19084 21.4277 7.98943 20.8708 7C20.3139 6.01057 19.2995 5.40987 17.2708 4.20846L16.5847 3.80211C14.5559 2.6007 13.5416 2 12.4277 2Z" fill="#1C274C"></path> <path d="M12.4277 8.25C10.3567 8.25 8.67773 9.92893 8.67773 12C8.67773 14.0711 10.3567 15.75 12.4277 15.75C14.4988 15.75 16.1777 14.0711 16.1777 12C16.1777 9.92893 14.4988 8.25 12.4277 8.25Z" fill="#1C274C"></path> </g></svg>
+                        <p>Settings</p>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+        <div class="main-cont">
+        <input type="text" id="search12" name="city" placeholder="Search your cities" spellcheck="true">
+                <svg id="searchsvg" width="35px"  height="25px" viewBox="-0.5 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+                    
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+                    
+                    <g id="SVGRepo_iconCarrier"> <path d="M22 11.8201C22 9.84228 21.4135 7.90885 20.3147 6.26436C19.2159 4.61987 17.6542 3.33813 15.8269 2.58126C13.9996 1.82438 11.9889 1.62637 10.0491 2.01223C8.10927 2.39808 6.32748 3.35052 4.92896 4.74904C3.53043 6.14757 2.578 7.92935 2.19214 9.86916C1.80629 11.809 2.00436 13.8197 2.76123 15.6469C3.51811 17.4742 4.79985 19.036 6.44434 20.1348C8.08883 21.2336 10.0222 21.8201 12 21.8201" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path d="M2 11.8201H22" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path d="M12 21.8201C10.07 21.8201 8.5 17.3401 8.5 11.8201C8.5 6.30007 10.07 1.82007 12 1.82007C13.93 1.82007 15.5 6.30007 15.5 11.8201" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path d="M18.3691 21.6901C20.3021 21.6901 21.8691 20.1231 21.8691 18.1901C21.8691 16.2571 20.3021 14.6901 18.3691 14.6901C16.4361 14.6901 14.8691 16.2571 14.8691 18.1901C14.8691 20.1231 16.4361 21.6901 18.3691 21.6901Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> <path d="M22.9998 22.8202L20.8398 20.6702" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </g>
+                    
+                </svg>
+                <button id="Searchbutton"></button>
+                <div class="mainweather">
+                    <div class="mainweathercontent">
+                        <h1 id="Currentcity">Kundapura</h1>
+                        <p style="color:rgba(0,0,0,0.5);" id="rainchance">Chance of rain:0%</p>
+                        <h1 id="temp">23<sup>o</sup></h1>
+                    </div>
+                    <div class="mainimage">
+                        <img src="" alt="" id="mainimg">
+                    </div>
+                </div>
+                <div class="Currentforecast">
+                    <h4>Today's Forecast</h4>
+                    <div class="Allforecast">
+                        <div class="Eachforecast">
+                            <h5>12:00AM</h5>
+                            <img src="" height="40px" width="40px" id="firstimg">
+                            <h2 id="twevle_am">21<sup>o</sup></h2>
+                        </div>
+                        <div class="Eachforecast">
+                            <h5>10:00AM</h5>
+                            <img src="" height="40px" width="40px" id="secondimg">
+                            <h2 id="ten_am">26<sup>o</sup></h2>
+                        </div>
+                        <div class="Eachforecast">
+                            <h5>12:00PM</h5>
+                            <img src="" height="40px" width="40px" id="thirdimg">
+                            <h2 id="twevle_pm">30<sup>o</sup></h2>
+                        </div>
+                        <div class="Eachforecast">
+                            <h5>4:00PM</h5>
+                            <img src="" height="40px" width="40px" id="fourthimg">
+                            <h2 id="four_pm">22<sup>o</sup></h2>
+                        </div>
+                        <div class="Eachforecast">
+                            <h5>9:00PM</h5>
+                            <img src="" height="40px" width="40px" id="fifthimg">
+                            <h2 id="nine_pm">28<sup>o</sup></h2>
+                        </div>
+                        <div class="Eachforecast" style="border:none;">
+                            <h5>11:00PM</h5>
+                            <img src="" height="40px" width="40px" id="siximg">
+                            <h2 id="elven_pm">25<sup>o</sup></h2>
+                        </div>  
+                    </div>
+                </div>
+                <br>
+                <div class="air-condition">
+                    <h4 style="margin-bottom:15px;">Air Conditions</h4>
+                    <div class="Allconditions">
+                        <div class="Twoinfo">
+                            <div class="Real-feel">
+                                <svg fill="black" width="35px" height="35px" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title></title> <g data-name="Thermometer" id="Thermometer-2"> <path d="M32.2446,37.2l-1.8706-1.501a1.0014,1.0014,0,0,1-.374-.78V13a4,4,0,0,0-8,0V34.9189a1.0014,1.0014,0,0,1-.374.78L19.7554,37.2a10,10,0,1,0,12.4892,0Z"></path> <path d="M37,32.05V13a11,11,0,0,0-22,0V32.05a17,17,0,1,0,22,0ZM26,57a11.9934,11.9934,0,0,1-7.4966-21.36L20,34.44V13a6,6,0,0,1,12,0V34.44l1.4966,1.2A11.9934,11.9934,0,0,1,26,57Z"></path> <path d="M54,14H42a1,1,0,0,1,0-2H54a1,1,0,0,1,0,2Z"></path> <path d="M51,22H42a1,1,0,0,1,0-2h9a1,1,0,0,1,0,2Z"></path> <path d="M48,30H42a1,1,0,0,1,0-2h6a1,1,0,0,1,0,2Z"></path> </g> </g></svg>
+                                <h3>Real Feel</h3>
+                            </div>
+                            <h2 id="realFeel">30<sup>o</sup></h2>
+                        </div>
+                        <div class="Oneinfo">
+                            <div class="Real-feel">
+                                <svg width="35px" height="35px" viewBox="0 0 24 24" fill="black" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M11.5 16.5C10.1193 16.5 9 15.3807 9 14M5 14C5 10.8745 7.15837 6.7764 10.9055 3.80403C11.5477 3.29457 12.4523 3.29457 13.0945 3.80403C16.8416 6.7764 19 10.8745 19 14C19 18.4183 15.4183 21 12 21C8.58172 21 5 18.4183 5 14Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                                <h3>Humidity</h3>
+                            </div>
+                            <h2 id="humidity">0%</h2>
+                        </div>
+                    </div>
+                    <div class="Allconditions">
+                        <div class="Twoinfo">
+                            <div class="Real-feel">
+                                <svg width="35px" height="35px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15.7639 7C16.3132 6.38625 17.1115 6 18 6C19.6569 6 21 7.34315 21 9C21 10.6569 19.6569 12 18 12H3M8.50926 4.66667C8.87548 4.2575 9.40767 4 10 4C11.1046 4 12 4.89543 12 6C12 7.10457 11.1046 8 10 8H3M11.5093 19.3333C11.8755 19.7425 12.4077 20 13 20C14.1046 20 15 19.1046 15 18C15 16.8954 14.1046 16 13 16H3" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                                <h3>Wind</h3>
+                            </div>
+                            <h2 id="windSpeed">0.3km/hrs</h2>
+                        </div>
+                        <div class="Oneinfo" id="One">
+                            <div class="Real-feel" >
+                                <svg width="35px" height="35px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <rect width="24" height="24" fill="white"></rect> <path fill-rule="evenodd" clip-rule="evenodd" d="M8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12Z" fill="#323232"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C12.5523 2 13 2.44772 13 3V5C13 5.55228 12.5523 6 12 6C11.4477 6 11 5.55228 11 5V3C11 2.44772 11.4477 2 12 2Z" fill="#323232"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M19.7071 4.29289C20.0976 4.68342 20.0976 5.31658 19.7071 5.70711L17.7071 7.70711C17.3166 8.09763 16.6834 8.09763 16.2929 7.70711C15.9024 7.31658 15.9024 6.68342 16.2929 6.29289L18.2929 4.29289C18.6834 3.90237 19.3166 3.90237 19.7071 4.29289Z" fill="#323232"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M18 12C18 11.4477 18.4477 11 19 11H21C21.5523 11 22 11.4477 22 12C22 12.5523 21.5523 13 21 13H19C18.4477 13 18 12.5523 18 12Z" fill="#323232"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M16.2929 16.2929C16.6834 15.9024 17.3166 15.9024 17.7071 16.2929L19.7071 18.2929C20.0976 18.6834 20.0976 19.3166 19.7071 19.7071C19.3166 20.0976 18.6834 20.0976 18.2929 19.7071L16.2929 17.7071C15.9024 17.3166 15.9024 16.6834 16.2929 16.2929Z" fill="#323232"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 18C12.5523 18 13 18.4477 13 19V21C13 21.5523 12.5523 22 12 22C11.4477 22 11 21.5523 11 21V19C11 18.4477 11.4477 18 12 18Z" fill="#323232"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M7.70711 16.2929C8.09763 16.6834 8.09763 17.3166 7.70711 17.7071L5.70711 19.7071C5.31658 20.0976 4.68342 20.0976 4.29289 19.7071C3.90237 19.3166 3.90237 18.6834 4.29289 18.2929L6.29289 16.2929C6.68342 15.9024 7.31658 15.9024 7.70711 16.2929Z" fill="#323232"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 11.4477 2.44772 11 3 11H5C5.55228 11 6 11.4477 6 12C6 12.5523 5.55228 13 5 13H3C2.44772 13 2 12.5523 2 12Z" fill="#323232"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M4.29289 4.29289C4.68342 3.90237 5.31658 3.90237 5.70711 4.29289L7.70711 6.29289C8.09763 6.68342 8.09763 7.31658 7.70711 7.70711C7.31658 8.09763 6.68342 8.09763 6.29289 7.70711L4.29289 5.70711C3.90237 5.31658 3.90237 4.68342 4.29289 4.29289Z" fill="#323232"></path> </g></svg>
+                                <h3>Heat Index</h3>
+                            </div>
+                            <h2 id="heatindex">3</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="Threedays">
+                <div class="Threedaysaside">
+                    <h4 id="Foreccastheading">3-Day Forecast</h4>
+                        <div class="Each">
+                            <h4 class="dayName">MON</h4>
+                            <img src="" height="35px" width="35px" class="seven">
+                            <h5 class="info">Cloudy</h5>
+                            <h5 id="mon"><b>21</b></h5>
+                        </div>
+                        <div class="Each">
+                            <h4 class="dayName">TUE</h4>
+                            <img src="" height="35px" width="35px" class="seven">
+                            <h5 class="info">Likely</h5>
+                            <h5 id="tue"><b>33</b></h5>
+                        </div>
+                        <div class="Each">
+                            <h4 class="dayName">WED</h4>
+                            <img src="" height="35px" width="35px" class="seven">                    
+                            <h5 class="info">Rainy</h5>
+                            <h5 id="wed"><b>21</b></h5>
+                        </div>
+                </div>
+                <div class="astro">
+                    <h5 id="Daybreak-heading">Daybreak</h5>
+                    <div class="Each">
+                        <h4>Sunrise</h4>
+                        <img src="./Sunrise.svg" width="35px" height="35px">
+                        <h5><b id="sunrise">12:00</b></h5>
+                    </div>
+                    <div class="Each">
+                        <h4>Sunset</h4>
+                        <img src="./Sunset.svg" width="35px" height="35px" >
+                        <h5><b id="sunset">7:00PM</b></h5>
+                    </div>
+                </div>
+            </div>
+            <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+            <script type="module" src="./scripts.js"></script>
+    </body>
+</html>
