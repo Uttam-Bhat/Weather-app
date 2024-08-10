@@ -30,6 +30,7 @@ let sunset=document.getElementById('sunset');
 
 
 
+
 let date=new Date();
 let day=date.getDay();
 function getDay(num){
@@ -126,7 +127,6 @@ function info2(i,img){
 info2(21,fifthimg)
 info2(23,siximg)
 info2(0,firstimg)
-console.log(firstimg);
         mainimg.src=data.current.condition.icon;
         function sevenforecast(i,img){
             img.src=data.forecast.forecastday[i].day.condition.icon;
@@ -154,7 +154,7 @@ console.log(firstimg);
         }  
   })
             .catch(error => {
-                console.log('Error fetching data:', error);
+                     alert('Error fetching city details currently not available:');
             });
 }
 weatherApi()
