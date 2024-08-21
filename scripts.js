@@ -53,7 +53,7 @@ document.getElementById("Searchbutton").addEventListener("click",(e)=>{
 })
 
 function weatherApi(){
-    let url=`https://api.weatherapi.com/v1/forecast.json?key=a0a567f8b9614c7eba934811240908&q=${city}&days=7`;
+    let url=`https://api.weatherapi.com/v1/forecast.json?key=30cdd708b61140508e4135730242108&q=${city}&days=7`;
     axios.get(url)
             .then(response => {
                 const data = response.data;
