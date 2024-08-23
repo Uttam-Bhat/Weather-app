@@ -127,34 +127,24 @@ function info2(i,img){
 info2(21,fifthimg)
 info2(23,siximg)
 info2(0,firstimg)
-        mainimg.src=data.current.condition.icon;
+       mainimg.src=data.current.condition.icon;
         function sevenforecast(i,img){
             img.src=data.forecast.forecastday[i].day.condition.icon;
         }
         
-        let prath=day;
             for(let i=0;i<3;i++){
-                if(prath>6){
-                    prath=0;
-                }
-            sevenforecast(prath,sevens[i]);
-            prath++;
+            sevenforecast(i,sevens[i]);
         }    
         function information(i,info){
-            info.innerText=data.forecast.forecastday[0].hour[i].condition.text;
+            info.innerText=data.forecast.forecastday[i].hour[i].condition.text;
         } 
         
-        let utt=day;
             for(let i=0;i<3;i++){
-                if(utt>6){
-                    utt=0;
-                }
-            information(utt,infos[i]);
-            utt++;
+            information(i,infos[i]);
         }  
   })
             .catch(error => {
-                     alert('Error fetching city details currently not available:');
+               alert('Error fetching city details currently not available:');
             });
 }
 weatherApi()
