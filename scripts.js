@@ -95,6 +95,8 @@ function weatherApi(){
                     img.src="https://cdn.weatherapi.com/weather/64x64/day/113.png";
                 else if(data.forecast.forecastday[0].hour[i].condition.text=="Moderate rain")
                     img.src="https://cdn.weatherapi.com/weather/64x64/day/302.png"
+                else if(data.forecast.forecastday[0].hour[i].condition.text=="Mist")
+                    img.src="https://cdn.weatherapi.com/weather/64x64/day/143.png"
                 else
                     img.src="https://cdn.weatherapi.com/weather/64x64/day/113.png";
             }
@@ -121,6 +123,8 @@ function info2(i,img){
         img.src="https://cdn.weatherapi.com/weather/64x64/night/113.png";
     else if(data.forecast.forecastday[0].hour[i].condition.text=="Moderate rain")
         img.src="https://cdn.weatherapi.com/weather/64x64/night/302.png";
+    else if(data.forecast.forecastday[0].hour[i].condition.text=="Mist")
+        img.src="https://cdn.weatherapi.com/weather/64x64/night/143.png"
     else
         img.src="https://cdn.weatherapi.com/weather/64x64/night/113.png";
 }
