@@ -131,7 +131,14 @@ function info2(i,img){
 info2(21,fifthimg)
 info2(23,siximg)
 info2(0,firstimg)
-       mainimg.src=data.current.condition.icon;
+       // Prefer higher-res, HTTPS icon if available
+       if (data.current.condition && data.current.condition.icon) {
+           const original = data.current.condition.icon.replace("//", "https://");
+           const highRes = original.replace("/64x64/", "/128x128/");
+           mainimg.onerror = () => { mainimg.src = original; };
+           mainimg.src = highRes;
+           mainimg.alt = data.current.condition.text || "Weather icon";
+       }
         function sevenforecast(i,img){
             img.src=data.forecast.forecastday[i].day.condition.icon;
         }
