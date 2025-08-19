@@ -35,7 +35,3 @@ A responsive weather app that shows current weather, forecasts, and air conditio
 - `scripts.js` - Weather functionality
 - `Sunrise.svg`, `Sunset.svg`, `windimg.png` - Icons
 
-## Responsive Design
-- Mobile: 600px and below
-- Tablet: 768px and below
-- Desktop: 992px and below
